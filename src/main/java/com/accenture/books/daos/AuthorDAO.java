@@ -2,7 +2,9 @@ package com.accenture.books.daos;
 
 import com.accenture.books.domain.Author;
 
+import java.util.Optional;
+
 public interface AuthorDAO {
 
-    Author findByBookIsbn(String isbn);
+    Optional<Author> findByBookIsbn(String isbn);
 }

@@ -9,14 +9,15 @@ import java.util.Optional;
 
 @Component
 public class BookDAOImpl implements BookDAO {
+
     @Override
     public List<Book> getAll() {
         return null;
     }
 
     @Override
-    public Book getByIsbn(String isbn) {
-        return null;
+    public Optional<Book> getByIsbn(String isbn) {
+        return Optional.empty();
     }
 
     @Override

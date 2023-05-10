@@ -11,7 +11,7 @@ public interface BookService {
 
     BookDTO addBook(BookDTO bookDTO, Long authorId);
 
-    BookDTO updateBook(BookDTO bookDTO);
+    BookDTO updateBook(BookDTO bookDTO, String isbn);
 
     void deleteBookByIsbn(String isbn);
 }

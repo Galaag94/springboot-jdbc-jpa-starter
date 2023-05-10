@@ -51,13 +51,15 @@ public class BookController {
             @RequestBody BookDTO bookDTO,
             @PathVariable("isbn") String isbn
     ) {
-        var updatedBook = bookService.updateBook(bookDTO);
+        var updatedBook = bookService.updateBook(bookDTO, isbn);
 
         return new ResponseEntity<>(updatedBook, HttpStatus.OK);
     }
 
     @DeleteMapping("/{isbn}")
-    public void deleteBookByIsbn(@PathVariable("isbn") String isbn) {
+    public ResponseEntity<?> deleteBookByIsbn(@PathVariable("isbn") String isbn) {
         bookService.deleteBookByIsbn(isbn);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
