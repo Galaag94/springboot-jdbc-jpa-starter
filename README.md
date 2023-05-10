@@ -13,8 +13,8 @@ In root's project execute commnad `docker-compose up` , this will download postg
 
 ## DB Diagram
 
-![db diagram](/imgs/db_design.svg)
+![db diagram](imgs/db_design.svg)
 
 ## Diagram
 
-![diagram](/imgs/diagram.svg)
+![diagram](imgs/diagram.svg)
