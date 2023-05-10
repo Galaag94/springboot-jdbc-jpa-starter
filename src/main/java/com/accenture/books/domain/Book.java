@@ -12,6 +12,11 @@ public class Book {
         this.author = author;
     }
 
+    public Book(String isbn, String title) {
+        this.isbn = isbn;
+        this.title = title;
+    }
+
     public String getIsbn() {
         return isbn;
     }

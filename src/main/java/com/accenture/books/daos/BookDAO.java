@@ -9,7 +9,7 @@ public interface BookDAO {
 
     List<Book> getAll();
 
-    Book getByIsbn(String isbn);
+    Optional<Book> getByIsbn(String isbn);
 
     Book insert(Book book, Long authorId);
 

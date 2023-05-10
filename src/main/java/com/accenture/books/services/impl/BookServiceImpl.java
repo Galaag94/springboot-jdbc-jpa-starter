@@ -1,6 +1,7 @@
 package com.accenture.books.services.impl;
 
 import com.accenture.books.dtos.BookDTO;
+import com.accenture.books.dtos.mappers.AuthorMapper;
 import com.accenture.books.dtos.mappers.BookMapper;
 import com.accenture.books.exceptions.NotFoundException;
 import com.accenture.books.repositories.impl.BookJDBCRepository;
@@ -13,17 +14,16 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookMapper bookMapper;
+    private final AuthorMapper authorMapper;
     private final BookJDBCRepository bookJDBCRepository;
-    private final BookJPARepository bookJPARepository;
 
     public BookServiceImpl(
             BookMapper bookMapper,
-            BookJDBCRepository bookJDBCRepository,
-            BookJPARepository bookJPARepository
+            AuthorMapper authorMapper, BookJDBCRepository bookJDBCRepository
     ) {
         this.bookMapper = bookMapper;
+        this.authorMapper = authorMapper;
         this.bookJDBCRepository = bookJDBCRepository;
-        this.bookJPARepository = bookJPARepository;
     }
 
     @Override
@@ -50,8 +50,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDTO updateBook(BookDTO bookDTO) {
-        var updated = bookJDBCRepository.updateBook(bookMapper.toModel(bookDTO));
+    public BookDTO updateBook(BookDTO bookDTO, String isbn) {
+        var book = bookJDBCRepository.getBookByIsbn(isbn)
+                .orElseThrow(() -> new NotFoundException(String.format("No book with isbn: %s was found", isbn)));
+
+        book.setTitle(bookDTO.title());
+
+         if (bookDTO.author() != null) {
+             book.setAuthor(authorMapper.toModel(bookDTO.author()));
+         }
+
+        var updated = bookJDBCRepository.updateBook(book);
 
         return bookMapper.toDTO(updated);
     }
