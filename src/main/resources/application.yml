@@ -6,6 +6,15 @@ app:
       username: accenture
       password: secret
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: ''
+    show-sql: true
+    properties:
+      format-sql: true
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
 server:
   error:
     include-binding-errors: always
