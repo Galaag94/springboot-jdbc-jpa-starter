@@ -18,3 +18,7 @@ In root's project execute commnad `docker-compose up` , this will download postg
 ## Diagram
 
 ![diagram](imgs/diagram.svg)
+
+## JDBC architecture
+
+![jdbc structure](imgs/Untitled%20Diagram.drawio.png)
